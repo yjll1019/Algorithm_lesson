@@ -9,7 +9,7 @@ public class Example1D {
 	
 	static class HashTable{
 		static final int EMPTY = 0;
-		static final int SIZE = 37;
+		static final int SIZE =37;
 		int[] a;
 		
 		public HashTable() {
@@ -21,6 +21,7 @@ public class Example1D {
 			int count = 0;
 			
 			do {
+
 				int index = (startIndex + count) % SIZE; //충돌시 다음 칸에 저장하기 위해서 count를 더해준다.
 				if(a[index]==EMPTY || a[index]==-1) {
 					a[index] = value; 
@@ -28,6 +29,7 @@ public class Example1D {
 				}
 				else if(a[index]==value) return; //이미 값이 들어있으면 리턴
 				++count; // 값이 인덱스에 들어있지만 비어있지도 않고 들어있는 값이 넣고자하는 값이 아니면 충돌발생
+
 			}while(count<a.length); //충돌 발생으로 인해 한 칸씩 자리를 옮겨가면서 값을 넣고자 했으나 배열이 꽉 차 있는 경우. 
 			throw new Exception("공간 부족");
 		}
@@ -42,10 +44,11 @@ public class Example1D {
 			do {
 				int index = (startIndex+count) % SIZE;
 				 
-				if(a[index%SIZE]==value) {
-					a[index%SIZE] = -1; //값이 있는 경우 값을 삭제(-1로 바꿔준다.)
+				if(a[index]==value) {
+					a[index] = -1; //값이 있는 경우 값을 삭제(-1로 바꿔준다.)
 					return;
 				}
+				count++;
 			}while(count<a.length);	
 			
 		}
@@ -70,6 +73,7 @@ public class Example1D {
 		
         int maxValue = 200, maxCount = 10;
         HashTable hashTable = new HashTable();
+       // int[] data = {5,10,15,20,25,30,35,40};
 
         int[] data = { 4, 13, 144, 7, 9, 11, 44, 115, 107, 196 };
         for (int i = 0; i < data.length; ++i)
@@ -88,6 +92,9 @@ public class Example1D {
         	if(hashTable.contains(i))
         		System.out.println(i);
         }
+        
+        System.out.println(hashTable.contains(115));
+        System.out.println(hashTable.contains(1));
 	}
 
 }
