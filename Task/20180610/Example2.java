@@ -105,7 +105,7 @@ public class Example2 {
         }
 
         selectionSort(a); // WordInfo 배열을 count 내림차순으로 정렬한다.
-        for (int i = 0; i < 3; ++i) // 선두 10 개 단어 출력
+        for (int i = 0; i < 10; ++i) // 선두 10 개 단어 출력
             System.out.printf("%s %d\n", a.get(i).word, a.get(i).count);
     }
 }
