@@ -59,9 +59,26 @@ public class Example1 {
 		return 최고점수;
 	}
 	
+	static boolean 경로출력(int c, int 점수) throws Exception { //열 : 0 패턴 : 1 이런식으로 출력!
+		for(int p=1; p<=4; ++p) {
+			//dpArr을 통해 c열의 p패턴의 값 중 최대값인 패턴에서
+			if(dpArr[c][p]==점수) {
+				if(c==0 || 경로출력(c-1,(점수-열점수(c,p)))) {
+					//종료 : c-1부분에서 -1로 들어가면 if문에서 false처리가 되어 함수 종료.
+					System.out.printf("열:%d 패턴:%d \n", c, p);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(전체점수(7));
+		int 점수 = 전체점수(7);
+		System.out.println("경로점수 = "+점수);
+		System.out.println(경로출력(7,점수));
+		
 	}
 
 }
