@@ -38,10 +38,56 @@ public class Example1 {
 		
 	}
 	
+	static void 경로출력(int r,int c) {
+		//System.out.println("("+r+","+c+")");
+		if(r==0 && c==0) {
+			System.out.println("(0,0)");
+			return;
+		}
+		if(r==0 && c>0) {
+			경로출력(r,c-1);
+			System.out.println("("+r+","+c+")");
+		}
+		if(r>0 && c==0) {
+			경로출력(r-1,c);
+			System.out.println("("+r+","+c+")");
+		}
+		else {
+			if(dpArr[r-1][c]>=dpArr[r][c-1]) {//r-1,c의 경로가 r,c-1경로의 점수보다 크면
+				//배열안에는 r,c경로 까지의 최소값이 들어있기때문에 두 개를 비교해서 작은 쪽으로 경로 이동
+				경로출력(r,c-1);
+				System.out.println("("+r+","+c+")");
+			}
+			else { 
+				경로출력(r-1,c);
+				System.out.println("("+r+","+c+")");
+			}
+		}
+	}
 	
+
+		static void 경로출력2(int r,int c) {
+			if(r==0&&c==0){
+				System.out.println("("+r+","+c+")");
+				return;
+			}
+			if(c==0 || (r>0&&dpArr[r-1][c]<=dpArr[r][c-1])){
+				경로출력(r-1,c);
+				System.out.println("("+r+","+c+")");
+			}
+			else{
+				System.out.println("("+r+","+c+")");
+				경로출력(r,c-1);
+			}
+		}
 	
+
     public static void main(String[] args) throws Exception {
     	System.out.println(점수(arr.length-1,arr.length-1));
     	System.out.println("count : "+count);
+    	System.out.println("경로출력 : ");
+    	경로출력(2,2);
+    	System.out.println("경로출력2 : ");
+    	경로출력2(2,2);
     }
 }
